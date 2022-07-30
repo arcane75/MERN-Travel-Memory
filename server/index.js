@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import cors from "cors";
 import morgan from "morgan";
 import dotenv from 'dotenv';
+import router from "./routes/user.js";
+
 
 dotenv.config();
 const app = express();
@@ -11,6 +13,11 @@ app.use(morgan("dev"));
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
+//Routers
+app.use("/users", router);
+app.get("/", (req, res) => {
+  res.send("Welcome");
+});
 
 //MongoDB URL
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.emvk4y1.mongodb.net/?retryWrites=true&w=majority`;
