@@ -11,6 +11,8 @@ import {
 } from "mdb-react-ui-kit";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/features/authSlice";
 
 //set initialState
 const initialState = {
@@ -22,11 +24,12 @@ const Login = () => {
   const [formValue, setFormValue] = useState(initialState);
   const { email, password } = formValue;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email && password) {
-      // dispatch(login({ formValue, navigate, toast }));
+      dispatch(login({ formValue, navigate, toast }));
     }
   };
   const onInputChange = (e) => {
