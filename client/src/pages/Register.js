@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { register } from "../redux/features/authSlice";
 
+//set initialState
 const initialState = {
   firstName: "",
   lastName: "",
@@ -36,13 +37,16 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
       return toast.error("Password should match");
     }
+
     if (email && password && firstName && lastName && confirmPassword) {
       dispatch(register({ formValue, navigate, toast }));
     }
   };
+
   const onInputChange = (e) => {
     let { name, value } = e.target;
     setFormValue({ ...formValue, [name]: value });
