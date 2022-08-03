@@ -4,6 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import router from "./routes/user.js";
+import tourRouter from "./routes/tour.js";
 
 dotenv.config();
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
 //Routers
 app.use("/users", router);
+app.use("/tour", tourRouter);
 app.get("/", (req, res) => {
   res.send("Welcome");
 });
