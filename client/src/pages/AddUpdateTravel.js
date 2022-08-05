@@ -11,6 +11,7 @@ import FileBase from "react-file-base64";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { createTour } from "../redux/features/tourSlice";
 
 const initialState = {
   title: "",
@@ -36,9 +37,17 @@ const AddUpdateTravel = () => {
   useEffect(() => {
     error && toast.error(error);
   }, [error]);
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (title && description && tags) {
+      const updatedTourData = { ...tourData, name: user?.result?.name };
+
+      dispatch(createTour({ updatedTourData, navigate, toast }));
+
+      handleClear();
+    }
   };
 
   const onInputChange = (e) => {
@@ -84,7 +93,7 @@ const AddUpdateTravel = () => {
                 onChange={onInputChange}
                 className="form-control"
                 required
-                invalid
+                invalid="true"
                 validation="Please provide title"
               />
             </div>
@@ -98,8 +107,8 @@ const AddUpdateTravel = () => {
                 onChange={onInputChange}
                 className="form-control"
                 required
-                invalid
-                textarea
+                invalid="true"
+                textarea="true"
                 rows={4}
                 validation="Please provide description"
               />
