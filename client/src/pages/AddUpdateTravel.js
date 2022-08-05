@@ -21,9 +21,25 @@ const initialState = {
 const AddUpdateTravel = () => {
   const [tourData, setTourData] = useState(initialState);
 
-  const { title, description, tags } = tourData;
+  //   useSelector
+  const { error, userTours } = useSelector((state) => ({
+    ...state.tour,
+  }));
+  const { user } = useSelector((state) => ({ ...state.auth }));
 
-  const handleSubmit = (e) => {    e.preventDefault();};
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { title, description, tags } = tourData;
+  const { id } = useParams();
+
+  useEffect(() => {
+    error && toast.error(error);
+  }, [error]);
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   const onInputChange = (e) => {
     const { name, value } = e.target;
