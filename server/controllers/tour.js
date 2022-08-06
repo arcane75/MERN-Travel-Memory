@@ -19,6 +19,7 @@ export const createTour = async (req, res) => {
 export const getTours = async (req, res) => {
   try {
     const tours = await TourModal.find();
+    console.log(tours);
     res.status(201).json(tours);
   } catch (err) {
     res.status(404).json({ message: "Something went wrong" });
