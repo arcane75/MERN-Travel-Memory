@@ -19,7 +19,7 @@ const CardTour = ({ imageFile, _id, name, title, description, tags }) => {
     }
     return str;
   };
-  
+
   return (
     <MDBCardGroup>
       <MDBCard className="h-100 mt-2 d-sm-flex" style={{ maxWidth: "20rem" }}>
@@ -33,7 +33,7 @@ const CardTour = ({ imageFile, _id, name, title, description, tags }) => {
         <div className="top-left">{name}</div>
         <span className="text-start tag-card">
           {tags.map((tag) => (
-            <></>
+            <> #{tag}</>
           ))}
         </span>
 
