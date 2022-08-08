@@ -26,6 +26,18 @@ export const getTours = createAsyncThunk(
     }
   }
 );
+
+export const getTour = createAsyncThunk(
+  "tour/getTour",
+  async (id, { rejectWithValue }) => {
+    try {
+      const response = await api.getTour(id);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
 const tourSlice = createSlice({
   name: "tour",
   initialState: {
@@ -67,6 +79,7 @@ const tourSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+    
   },
 });
 
