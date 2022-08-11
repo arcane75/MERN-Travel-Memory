@@ -36,3 +36,5 @@ export const getTour = async (req, res) => {
     res.status(404).json({ message: "Something went wrong" });
   }
 };
+
+export const getToursByUser = async (req, res) => {};
