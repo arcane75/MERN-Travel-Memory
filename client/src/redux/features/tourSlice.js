@@ -115,6 +115,7 @@ const tourSlice = createSlice({
       state.error = action.payload.message;
     },
   },
+  
 });
 
 export default tourSlice.reducer;
